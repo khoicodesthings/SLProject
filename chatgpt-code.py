@@ -6,6 +6,9 @@ from sklearn.metrics import accuracy_score
 # Read in CSV file with song features and binary preference
 df = pd.read_csv('final.csv')
 
+# Shuffle the dataframe
+df = df.sample(frac=1, random_state=42)
+
 # Extract song names
 song_names = df['name']
 
@@ -27,7 +30,8 @@ def sigmoid(z):
 def cost_function(X, y, theta):
     m = len(y)
     h = sigmoid(X.dot(theta))
-    J = -1/m * (y.T.dot(np.log(h)) + (1-y).T.dot(np.log(1-h)))
+    eps = 1e-15 # small constant value to avoid taking the logarithm of zero
+    J = -1/m * (y.T.dot(np.log(h + eps)) + (1-y).T.dot(np.log(1-h + eps)))
     return J
 
 # Define gradient function
