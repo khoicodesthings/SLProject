@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.28)  24 MAR 2023 11:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.28)  25 MAR 2023 16:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -687,7 +687,21 @@ Package hyperref Info: Link coloring OFF on input line 66.
 \@outlinefile=\write4
 \openout4 = `main.out'.
 
- (./proposal.tex)
+ (./proposal.tex (d:/texlive/2022/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msa on input line 6.
+ (d:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+) (d:/texlive/2022/texmf-dist/tex/latex/microtype/mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 6.
+ (d:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) (d:/texlive/2022/texmf-dist/tex/latex/microtype/mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+))
 No file main.bbl.
 [1{d:/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
@@ -699,18 +713,18 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 25909 strings out of 476065
- 483735 string characters out of 5795014
- 1853299 words of memory out of 5000000
- 45872 multiletter control sequences out of 15000+600000
- 519928 words of font info for 63 fonts, out of 8000000 for 9000
+ 26078 strings out of 476065
+ 486893 string characters out of 5795014
+ 1858299 words of memory out of 5000000
+ 46003 multiletter control sequences out of 15000+600000
+ 522103 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,5n,94p,1044b,573s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{d:/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc}<d:/texlive/2022/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><d:/texlive/2022/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on main.pdf (1 page, 26361 bytes).
+{d:/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc}<d:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><d:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><d:/texlive/2022/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><d:/texlive/2022/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
+Output written on main.pdf (1 page, 50201 bytes).
 PDF statistics:
- 27 PDF objects out of 1000 (max. 8388607)
- 19 compressed objects within 1 object stream
+ 37 PDF objects out of 1000 (max. 8388607)
+ 25 compressed objects within 1 object stream
  2 named destinations out of 1000 (max. 500000)
- 18445 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 19981 words of extra memory for PDF output out of 20736 (max. 10000000)
 
