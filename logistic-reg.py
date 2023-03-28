@@ -36,13 +36,13 @@ x_test, y_test = x.iloc[test_indices], y.iloc[test_indices]
 def sigmoid(z):
     return 1 / (1 + np.exp(-z))
 
-# Define cost function
-def cost_function(x, y, theta):
+# Define loss function
+def loss(x, y, theta):
     m = len(y)
     h = sigmoid(x.dot(theta))
     eps = 1e-15 # small constant value to avoid taking the logarithm of zero
-    J = -1/m * (y.T.dot(np.log(h + eps)) + (1-y).T.dot(np.log(1-h + eps)))
-    return J
+    j = -1/m * (y.T.dot(np.log(h + eps)) + (1-y).T.dot(np.log(1-h + eps)))
+    return j
 
 # Define gradient function
 def gradient(x, y, theta):
@@ -55,18 +55,27 @@ def gradient(x, y, theta):
 def logistic_regression(x, y, alpha, num_iters):
     m, n = x.shape
     theta = np.zeros(n)
-    J_history = []
+    j_history = []
     for i in range(num_iters):
-        cost = cost_function(x, y, theta)
+        cost = loss(x, y, theta)
         grad = gradient(x, y, theta)
         theta = theta - alpha * grad
-        J_history.append(cost)
-    return theta, J_history
+        j_history.append(cost)
+    return theta, j_history
+
+# Calculate precision and recall
+def true_positives(y_true, y_pred):
+    tp = np.sum((y_true == 1) & (y_pred == 1))
+    return tp
+
+def false_positives(y_true, y_pred):
+    fp = np.sum((y_true == 0) & (y_pred == 1))
+    return fp
 
 # Train logistic regression model
 alpha = 0.01
 num_iters = 1000
-theta, J_history = logistic_regression(x_train, y_train, alpha, num_iters)
+theta, j_history = logistic_regression(x_train, y_train, alpha, num_iters)
 
 # Make predictions
 y_pred = np.round(sigmoid(x_test.dot(theta)))
@@ -86,15 +95,6 @@ y_true = y_test.values
 results = pd.DataFrame({'song_name': song_names_test, 'preference_true': y_true, 'preference_pred': y_pred})
 results = results[['song_name', 'preference_true', 'preference_pred']]
 results.to_csv('song_predictions.csv', index=False)
-
-# Calculate precision and recall
-def true_positives(y_true, y_pred):
-    tp = np.sum((y_true == 1) & (y_pred == 1))
-    return tp
-
-def false_positives(y_true, y_pred):
-    fp = np.sum((y_true == 0) & (y_pred == 1))
-    return fp
 
 tp = true_positives(y_test, y_pred)
 fp = false_positives(y_test, y_pred)
