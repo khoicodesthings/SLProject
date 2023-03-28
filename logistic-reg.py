@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 
 # Read in CSV file with song features and binary preference
 df = pd.read_csv('final.csv')
@@ -108,3 +109,23 @@ print('Recall:', recall)
 accuracy = np.sum(y_test == y_pred) / len(y_test)
 print('Accuracy:', accuracy)
 
+# Calculate true positive rate and false positive rate for various thresholds
+thresholds = np.linspace(0, 1, 100)
+tpr = []
+fpr = []
+for threshold in thresholds:
+    y_pred_threshold = np.where(sigmoid(x_test.dot(theta)) >= threshold, 1, 0)
+    tp = true_positives(y_test, y_pred_threshold)
+    fp = false_positives(y_test, y_pred_threshold)
+    tn = np.sum((y_test == 0) & (y_pred_threshold == 0))
+    fn = np.sum((y_test == 1) & (y_pred_threshold == 0))
+    tpr.append(tp / (tp + fn))
+    fpr.append(fp / (fp + tn))
+
+# Plot ROC curve
+plt.plot(fpr, tpr)
+plt.plot([0, 1], [0, 1], 'k--')
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('Receiver Operating Characteristic (ROC) Curve')
+plt.show()
