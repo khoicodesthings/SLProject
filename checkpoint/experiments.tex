@@ -1,5 +1,9 @@
 \section{Experimental Progress}
 
+\subsection{Data Preprocessing}
+
+For the preprocessing of the data, we removed duplicates, the preference column, as well as scaling and shuffling the data before passing into the model.
+
 \subsection{Khoi's Progress}
 
 For this project, Khoi is implementing two methods: logistic regression and decision trees.
@@ -10,7 +14,7 @@ Decision Tree is a machine learning algorithm to predict the class of an input b
 
 Currently, he is working on the logistic regression model.
 
-For the model, Khoi is consider the learning rate $\alpha = 0.01$ and the model will train for 1000 iterations. Moreover, he implemented the sigmoid, loss, and gradient fucntion from scratch. After one run, here are his results:
+For the model, Khoi is consider the learning rate $\alpha = 0.01$ and the model will train for 1000 iterations. Moreover, he implemented the sigmoid, logistic loss, and gradient fucntion from scratch. After one run, here are his results:
 
 Precision: 94.56\%
 
@@ -22,7 +26,7 @@ Along with this ROC curve
 
 \begin{figure}[H] %h forces the figure to be inserted right here
     \centering
-    \includegraphics[width=1\linewidth]{LogisticROC.png}
+    \includegraphics[width=0.75\linewidth]{LogisticROC.png}
     \caption{ROC Curve for Logistic Regression}
 \end{figure}
 
@@ -33,3 +37,15 @@ For this project, Airi is implementing two methods: naive bayes and random fores
 Naive Bayes is a group of probabilistic machine learning algorithms based on applying Bayes' theorem with the assumption of independence between features. This assumes that the presence or absence of one feature does not affect the presence or absence of any other feature within a class, and calculates the probabilities of each class label given the values of the features from the input. The class with the highest probability is then selected as the predicted class label for the given input.
 
 Random Forest is an ensemble learning method that combines multiple decision trees to improve the performance and reduce overfitting. Each decision tree is constructed by randomly selecting a set of features and samples from the training set. This randomization helps to make a model less sensitive to noise and outliers in the data, and outperforms other algorithms.
+
+For the random forest model, Airi used the Gini index as the criterion for tree splitting with 20 decision trees, and the Naive Bayes model was implemented based on the Bayes' theorem. Also, to evaluate the performance of the models, precision, accuracy, and recall were calculated and both of the models achieved high scores as follows
+
+— Random Forest:
+Accuracy: 97.91\%
+Precision: 97.41\% 
+Recall: 49.29\%
+
+— Naive Bayes: 
+Accuracy:  97.68\%	
+Precision: 97.78\% 
+Recall: 49.04\% 
