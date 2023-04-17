@@ -96,6 +96,13 @@ def false_positives(y_true, y_pred):
 # Load dataset from final.csv file
 df = pd.read_csv('final.csv')
 
+df['key'] = df['key'].astype('category')
+
+df['mode'] = df['mode'].astype('category')
+
+# Shuffle the dataframe
+df = df.sample(frac=1, random_state=42)
+
 # Extract song names
 song_names = df['name']
 

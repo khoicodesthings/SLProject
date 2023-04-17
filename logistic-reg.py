@@ -2,8 +2,12 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Read in CSV file with song features and binary preference
+# Load dataset from final.csv file
 df = pd.read_csv('final.csv')
+
+df['key'] = df['key'].astype('category')
+
+df['mode'] = df['mode'].astype('category')
 
 # Shuffle the dataframe
 df = df.sample(frac=1, random_state=42)
@@ -11,26 +15,25 @@ df = df.sample(frac=1, random_state=42)
 # Extract song names
 song_names = df['name']
 
-# Remove duplicates
+# Remove duplicates from the dataset
 df = df.drop_duplicates()
 
 # Split data into features and target variable
-x = df.drop(columns=['name', 'preference'])
-y = df['preference']
+X = df.iloc[:, 1:-1].values
+y = df.iloc[:, -1].values
 
 # Scale the features using mean normalization
-x = (x - np.mean(x, axis=0)) / np.std(x, axis=0)
+X = (X - np.mean(X, axis=0)) / np.std(X, axis=0)
 
-# Split data into training and testing sets
-# x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
-
-# Split data into training and testing sets
+# Set random seed for reproducibility
 np.random.seed(5033)
-indices = np.random.permutation(len(df))
-train_indices, test_indices = indices[:int(0.8*len(df))], indices[int(0.8*len(df)):]
 
-x_train, y_train = x.iloc[train_indices], y.iloc[train_indices]
-x_test, y_test = x.iloc[test_indices], y.iloc[test_indices]
+# Split data into train and validation sets
+idx = np.random.permutation(len(X))
+train_idx, val_idx = idx[:int(0.8*len(X))], idx[int(0.8*len(X)):]
+
+X_train, y_train = X[train_idx], y[train_idx]
+X_val, y_val = X[val_idx], y[val_idx]
 
 # Define sigmoid function
 def sigmoid(z):
@@ -73,40 +76,24 @@ def false_positives(y_true, y_pred):
     return fp
 
 # Train logistic regression model
-alpha = 0.01
+alpha = 1
 num_iters = 1000
-theta, j_history = logistic_regression(x_train, y_train, alpha, num_iters)
+theta, j_history = logistic_regression(X_train, y_train, alpha, num_iters)
 
 # Make predictions
-y_pred = np.round(sigmoid(x_test.dot(theta)))
+y_pred = np.round(sigmoid(X_val.dot(theta)))
 
-# Extract song names from index
-song_names_test = song_names[x_test.index]
-
-# Save predictions to CSV file
-#results = pd.DataFrame({'song_name': song_names_test, 'preference_pred': y_pred})
-#results = results[['song_name', 'preference_pred']]
-#results.to_csv('song_predictions.csv', index=False)
-
-# Extract correct preferences from the test set
-y_true = y_test.values
-
-# Save predictions and true preferences to CSV file
-results = pd.DataFrame({'song_name': song_names_test, 'preference_true': y_true, 'preference_pred': y_pred})
-results = results[['song_name', 'preference_true', 'preference_pred']]
-results.to_csv('song_predictions.csv', index=False)
-
-tp = true_positives(y_test, y_pred)
-fp = false_positives(y_test, y_pred)
+tp = true_positives(y_val, y_pred)
+fp = false_positives(y_val, y_pred)
 
 precision = tp / (tp + fp)
-recall = tp / (tp + np.sum(y_test == 1))
+recall = tp / (tp + np.sum(y_val == 1))
 
 print('Precision:', precision)
 print('Recall:', recall)
 
 # Evaluate model accuracy
-accuracy = np.sum(y_test == y_pred) / len(y_test)
+accuracy = np.sum(y_val == y_pred) / len(y_val)
 print('Accuracy:', accuracy)
 
 # Calculate true positive rate and false positive rate for various thresholds
@@ -114,11 +101,11 @@ thresholds = np.linspace(0, 1, 100)
 tpr = []
 fpr = []
 for threshold in thresholds:
-    y_pred_threshold = np.where(sigmoid(x_test.dot(theta)) >= threshold, 1, 0)
-    tp = true_positives(y_test, y_pred_threshold)
-    fp = false_positives(y_test, y_pred_threshold)
-    tn = np.sum((y_test == 0) & (y_pred_threshold == 0))
-    fn = np.sum((y_test == 1) & (y_pred_threshold == 0))
+    y_pred_threshold = np.where(sigmoid(X_val.dot(theta)) >= threshold, 1, 0)
+    tp = true_positives(y_val, y_pred_threshold)
+    fp = false_positives(y_val, y_pred_threshold)
+    tn = np.sum((y_val == 0) & (y_pred_threshold == 0))
+    fn = np.sum((y_val == 1) & (y_pred_threshold == 0))
     tpr.append(tp / (tp + fn))
     fpr.append(fp / (fp + tn))
 
