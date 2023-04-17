@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import roc_curve, auc
 
 # Load dataset from final.csv file
 df = pd.read_csv('final.csv')
@@ -107,23 +109,45 @@ print('Recall:', recall)
 accuracy = np.sum(y_val == y_pred) / len(y_val)
 print('Accuracy:', accuracy)
 
-# Calculate true positive rate and false positive rate for various thresholds
-thresholds = np.linspace(0, 1, 100)
-tpr = []
-fpr = []
-for threshold in thresholds:
-    y_pred_threshold = np.where(sigmoid(X_val.dot(theta)) >= threshold, 1, 0)
-    tp = true_positives(y_val, y_pred_threshold)
-    fp = false_positives(y_val, y_pred_threshold)
-    tn = np.sum((y_val == 0) & (y_pred_threshold == 0))
-    fn = np.sum((y_val == 1) & (y_pred_threshold == 0))
-    tpr.append(tp / (tp + fn))
-    fpr.append(fp / (fp + tn))
+# Print the confusion matrix
+cm = confusion_matrix(y_val, y_pred)
+print("Confusion matrix:")
+print(cm)
+
+# # Calculate true positive rate and false positive rate for various thresholds
+# thresholds = np.linspace(0, 1, 100)
+# tpr = []
+# fpr = []
+# for threshold in thresholds:
+#     y_pred_threshold = np.where(sigmoid(X_val.dot(theta)) >= threshold, 1, 0)
+#     tp = true_positives(y_val, y_pred_threshold)
+#     fp = false_positives(y_val, y_pred_threshold)
+#     tn = np.sum((y_val == 0) & (y_pred_threshold == 0))
+#     fn = np.sum((y_val == 1) & (y_pred_threshold == 0))
+#     tpr.append(tp / (tp + fn))
+#     fpr.append(fp / (fp + tn))
+
+# # Plot ROC curve
+# plt.plot(fpr, tpr)
+# plt.plot([0, 1], [0, 1], 'k--')
+# plt.xlabel('False Positive Rate')
+# plt.ylabel('True Positive Rate')
+# plt.title('Receiver Operating Characteristic (ROC) Curve')
+# plt.show()
+
+# Compute the false positive rate and true positive rate
+fpr, tpr, thresholds = roc_curve(y_val, y_pred)
+
+# Compute the area under the ROC curve
+roc_auc = auc(fpr, tpr)
 
 # Plot ROC curve
-plt.plot(fpr, tpr)
+plt.plot(fpr, tpr, label='ROC curve (area = %0.2f)' % roc_auc)
 plt.plot([0, 1], [0, 1], 'k--')
+plt.xlim([-0.01, 1.01])
+plt.ylim([-0.01, 1.01])
 plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate')
-plt.title('Receiver Operating Characteristic (ROC) Curve')
+plt.title('Receiver Operating Characteristic')
+plt.legend(loc="lower right")
 plt.show()
