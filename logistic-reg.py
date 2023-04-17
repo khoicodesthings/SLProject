@@ -22,8 +22,19 @@ df = df.drop_duplicates()
 X = df.iloc[:, 1:-1].values
 y = df.iloc[:, -1].values
 
+# define a scaling function for numpy arrays
+def scale_features(X):
+    for i in range(X.shape[1]):
+        col = X[:, i]
+        if np.issubdtype(col.dtype, np.number):  # check if the column is numeric
+            col = col.astype(float)
+            X[:, i] = (col - col.mean()) / col.std()  # scale the column
+
+# apply the scaling function to X
+scale_features(X)
+
 # Scale the features using mean normalization
-X = (X - np.mean(X, axis=0)) / np.std(X, axis=0)
+# X = (X - np.mean(X, axis=0)) / np.std(X, axis=0)
 
 # Set random seed for reproducibility
 np.random.seed(5033)
