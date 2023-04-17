@@ -88,13 +88,13 @@ class DecisionTree:
         return np.array(predictions)
 
 # Calculate precision and recall
-def true_positives(y_true, y_pred):
-    tp = np.sum((y_true == 1) & (y_pred == 1))
-    return tp
+# def true_positives(y_true, y_pred):
+#     tp = np.sum((y_true == 1) & (y_pred == 1))
+#     return tp
 
-def false_positives(y_true, y_pred):
-    fp = np.sum((y_true == 0) & (y_pred == 1))
-    return fp
+# def false_positives(y_true, y_pred):
+#     fp = np.sum((y_true == 0) & (y_pred == 1))
+#     return fp
 
 # Load dataset from final.csv file
 df = pd.read_csv('final.csv')
@@ -148,28 +148,41 @@ y_pred = tree.predict(X_val)
 accuracy = np.mean(y_pred == y_val)
 print("Accuracy:", accuracy)
 
-tp = true_positives(y_val, y_pred)
-fp = false_positives(y_val, y_pred)
+# tp = true_positives(y_val, y_pred)
+# fp = false_positives(y_val, y_pred)
 
-precision = tp / (tp + fp)
-recall = tp / (tp + np.sum(y_val == 1))
+# precision = tp / (tp + fp)
+# recall = tp / (tp + np.sum(y_val == 1))
 
-print('Precision:', precision)
-print('Recall:', recall)
-
-# # Print the confusion matrix
-# cm = confusion_matrix(y_val, y_pred)
-# print("Confusion matrix:")
-# print(cm)
-
-# Compute the confusion matrix
-confusion_matrix = np.zeros((2, 2))
-for i in range(len(y_val)):
-    confusion_matrix[y_val[i], y_pred[i]] += 1
+# print('Precision:', precision)
+# print('Recall:', recall)
 
 # Print the confusion matrix
+cm = confusion_matrix(y_val, y_pred)
 print("Confusion matrix:")
-print(confusion_matrix)
+print(cm)
+
+# # Compute the confusion matrix
+# confusion_matrix = np.zeros((2, 2))
+# for i in range(len(y_val)):
+#     confusion_matrix[y_val[i], y_pred[i]] += 1
+
+# # Print the confusion matrix
+# print("Confusion matrix:")
+# print(confusion_matrix)
+
+# Extract TP, FP, FN, TN from confusion matrix
+TP = cm[1, 1]
+FP = cm[0, 1]
+FN = cm[1, 0]
+TN = cm[0, 0]
+
+# Compute precision and recall
+precision = TP / (TP + FP)
+recall = TP / (TP + FN)
+
+print('Precision:',precision)
+print('Recall:',recall)
 
 # # Calculate TPR and FPR at different thresholds
 # thresholds = np.linspace(0, 1, 100)
@@ -204,8 +217,9 @@ plt.xlim([-0.01, 1.01])
 plt.ylim([-0.01, 1.01])
 plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate')
-plt.title('Receiver Operating Characteristic')
+plt.title('Decision Tree ROC Curve')
 plt.legend(loc="lower right")
+plt.savefig('decision-treeROC.png')
 plt.show()
 
 

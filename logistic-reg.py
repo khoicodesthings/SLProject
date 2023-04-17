@@ -96,14 +96,14 @@ theta, j_history = logistic_regression(X_train, y_train, alpha, num_iters)
 # Make predictions
 y_pred = np.round(sigmoid(X_val.dot(theta)))
 
-tp = true_positives(y_val, y_pred)
-fp = false_positives(y_val, y_pred)
+# tp = true_positives(y_val, y_pred)
+# fp = false_positives(y_val, y_pred)
 
-precision = tp / (tp + fp)
-recall = tp / (tp + np.sum(y_val == 1))
+# precision = tp / (tp + fp)
+# recall = tp / (tp + np.sum(y_val == 1))
 
-print('Precision:', precision)
-print('Recall:', recall)
+# print('Precision:', precision)
+# print('Recall:', recall)
 
 # Evaluate model accuracy
 accuracy = np.sum(y_val == y_pred) / len(y_val)
@@ -113,6 +113,19 @@ print('Accuracy:', accuracy)
 cm = confusion_matrix(y_val, y_pred)
 print("Confusion matrix:")
 print(cm)
+
+# Extract TP, FP, FN, TN from confusion matrix
+TP = cm[1, 1]
+FP = cm[0, 1]
+FN = cm[1, 0]
+TN = cm[0, 0]
+
+# Compute precision and recall
+precision = TP / (TP + FP)
+recall = TP / (TP + FN)
+
+print('Precision:',precision)
+print('Recall:',recall)
 
 # # Calculate true positive rate and false positive rate for various thresholds
 # thresholds = np.linspace(0, 1, 100)
@@ -148,6 +161,7 @@ plt.xlim([-0.01, 1.01])
 plt.ylim([-0.01, 1.01])
 plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate')
-plt.title('Receiver Operating Characteristic')
+plt.title('Logistic Regression ROC Curve')
 plt.legend(loc="lower right")
+plt.savefig('logistic-regressionROC.png')
 plt.show()
