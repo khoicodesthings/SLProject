@@ -184,43 +184,43 @@ recall = TP / (TP + FN)
 print('Precision:',precision)
 print('Recall:',recall)
 
-# # Calculate TPR and FPR at different thresholds
-# thresholds = np.linspace(0, 1, 100)
-# tpr = []
-# fpr = []
-# for threshold in thresholds:
-#     y_pred_threshold = (y_pred >= threshold).astype(int)
-#     tp = true_positives(y_val, y_pred_threshold)
-#     fp = false_positives(y_val, y_pred_threshold)
-#     tn = np.sum((y_val == 0) & (y_pred_threshold == 0))
-#     fn = np.sum((y_val == 1) & (y_pred_threshold == 0))
-#     tpr.append(tp / (tp + fn))
-#     fpr.append(fp / (fp + tn))
+# Calculate TPR and FPR at different thresholds
+thresholds = np.linspace(0, 1, 100)
+tpr = []
+fpr = []
+for threshold in thresholds:
+    y_pred_threshold = (y_pred >= threshold).astype(int)
+    tp = np.sum((y_val == 1) & (y_pred_threshold == 1))
+    fp = np.sum((y_val == 0) & (y_pred_threshold == 1))
+    tn = np.sum((y_val == 0) & (y_pred_threshold == 0))
+    fn = np.sum((y_val == 1) & (y_pred_threshold == 0))
+    tpr.append(tp / (tp + fn))
+    fpr.append(fp / (fp + tn))
 
-# # Plot ROC
-# plt.plot(fpr, tpr)
-# plt.xlabel('False Positive Rate')
-# plt.ylabel('True Positive Rate')
-# plt.title('ROC Curve')
-# plt.show()
-
-# Compute the false positive rate and true positive rate
-fpr, tpr, thresholds = roc_curve(y_val, y_pred)
-
-# Compute the area under the ROC curve
-roc_auc = auc(fpr, tpr)
-
-# Plot ROC curve
-plt.plot(fpr, tpr, label='ROC curve (area = %0.2f)' % roc_auc)
-plt.plot([0, 1], [0, 1], 'k--')
-plt.xlim([-0.01, 1.01])
-plt.ylim([-0.01, 1.01])
+# Plot ROC
+plt.plot(fpr, tpr)
 plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate')
-plt.title('Decision Tree ROC Curve')
-plt.legend(loc="lower right")
-plt.savefig('decision-treeROC.png')
+plt.title('ROC Curve')
 plt.show()
+
+# # Compute the false positive rate and true positive rate
+# fpr, tpr, thresholds = roc_curve(y_val, y_pred)
+
+# # Compute the area under the ROC curve
+# roc_auc = auc(fpr, tpr)
+
+# # Plot ROC curve
+# plt.plot(fpr, tpr, label='ROC curve (area = %0.2f)' % roc_auc)
+# plt.plot([0, 1], [0, 1], 'k--')
+# plt.xlim([-0.01, 1.01])
+# plt.ylim([-0.01, 1.01])
+# plt.xlabel('False Positive Rate')
+# plt.ylabel('True Positive Rate')
+# plt.title('Decision Tree ROC Curve')
+# plt.legend(loc="lower right")
+# plt.savefig('decision-treeROC.png')
+# plt.show()
 
 
 
