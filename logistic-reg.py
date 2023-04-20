@@ -35,9 +35,6 @@ def scale_features(X):
 # apply the scaling function to X
 scale_features(X)
 
-# Scale the features using mean normalization
-# X = (X - np.mean(X, axis=0)) / np.std(X, axis=0)
-
 # Set random seed for reproducibility
 np.random.seed(5033)
 
@@ -96,15 +93,6 @@ theta, j_history = logistic_regression(X_train, y_train, alpha, num_iters)
 # Make predictions
 y_pred = np.round(sigmoid(X_val.dot(theta)))
 
-# tp = true_positives(y_val, y_pred)
-# fp = false_positives(y_val, y_pred)
-
-# precision = tp / (tp + fp)
-# recall = tp / (tp + np.sum(y_val == 1))
-
-# print('Precision:', precision)
-# print('Recall:', recall)
-
 # Evaluate model accuracy
 accuracy = np.sum(y_val == y_pred) / len(y_val)
 print('Accuracy:', accuracy)
@@ -126,27 +114,6 @@ recall = TP / (TP + FN)
 
 print('Precision:',precision)
 print('Recall:',recall)
-
-# # Calculate true positive rate and false positive rate for various thresholds
-# thresholds = np.linspace(0, 1, 100)
-# tpr = []
-# fpr = []
-# for threshold in thresholds:
-#     y_pred_threshold = np.where(sigmoid(X_val.dot(theta)) >= threshold, 1, 0)
-#     tp = np.sum((y_val == 1) & (y_pred_threshold == 1))
-#     fp = np.sum((y_val == 0) & (y_pred_threshold == 1))
-#     tn = np.sum((y_val == 0) & (y_pred_threshold == 0))
-#     fn = np.sum((y_val == 1) & (y_pred_threshold == 0))
-#     tpr.append(tp / (tp + fn))
-#     fpr.append(fp / (fp + tn))
-
-# # Plot ROC curve
-# plt.plot(fpr, tpr)
-# plt.plot([0, 1], [0, 1], 'k--')
-# plt.xlabel('False Positive Rate')
-# plt.ylabel('True Positive Rate')
-# plt.title('Receiver Operating Characteristic (ROC) Curve')
-# plt.show()
 
 # Compute the false positive rate and true positive rate
 fpr, tpr, thresholds = roc_curve(y_val, y_pred)
