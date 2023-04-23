@@ -19,6 +19,7 @@ song_names = df['name']
 
 # Remove duplicates from the dataset
 df = df.drop_duplicates()
+df = df.drop(columns=['name', 'preference', 'key', 'mode'])
 
 # Split data into features and target variable
 X = df.iloc[:, 1:-1].values
