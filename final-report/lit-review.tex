@@ -1,0 +1,13 @@
+\section{Brief Overview}
+
+In this section, some brief overview will be given for the data, as well as some pre-processing and analysis.
+
+One thing we wanted to explore from the data, is how the points are related to one another, through principal component analysis, and clustering. Using k-means clustering, with $k = 3$, we obtained the following figure.
+
+\begin{figure}[H] %h forces the figure to be inserted right here
+    \centering
+    \includegraphics[width=1\linewidth]{kmeanscluster.png}
+    \caption{Clustering Results}
+\end{figure}
+
+Looking at the figure, we can see that Principal Component 1 separate songs with higher valence, key, danceability (these mostly belong to Cluster 1), and Principal Component 2 separate songs with higher acousticness, speechiness, and liveness (these mostly belong to Cluster 0).

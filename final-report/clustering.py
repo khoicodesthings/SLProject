@@ -90,6 +90,21 @@ plt.legend(handles=legend_elements)
 plt.xlabel('Principal Component 1')
 plt.ylabel('Principal Component 2')
 plt.title('K-Means Clustering Results')
+
+# Get the principal axes in feature space
+feature_vectors = pca.components_.T
+
+# Set scaling factor for feature vectors
+scale_factor = 4
+
+# Plot the feature vectors
+for i, feature_vector in enumerate(feature_vectors):
+    plt.arrow(0, 0, feature_vector[0]*scale_factor, feature_vector[1]*scale_factor, 
+              color='r', alpha=0.5, linewidth=2*scale_factor, 
+              head_width=0.1*scale_factor, head_length=0.1*scale_factor)
+    plt.text(feature_vector[0]*scale_factor*1.15, feature_vector[1]*scale_factor*1.15, 
+             df.columns[:-1][i], color='r', ha='center', va='center')
+
 plt.savefig('kmeanscluster.png')
 # Show the plot
 plt.show()
