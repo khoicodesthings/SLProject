@@ -96,7 +96,7 @@ plt.title('K-Means Clustering Results')
 feature_vectors = pca.components_.T
 
 # Set scaling factor for feature vectors
-scale_factor = 4
+scale_factor = 2
 
 # Plot the feature vectors
 for i, feature_vector in enumerate(feature_vectors):
