@@ -1,1 +1,32 @@
 \section{Experimental Analysis}
+
+\subsection{Khoi's Results}
+
+For this project, Khoi implemented logistic regression and decision tree.
+
+\textbf{Logistic Regression} is a statistical machine learning algorithm predicting the probability of a target variable by fitting a logistic function to the input features. This optimizes the parameters of the logistic function by minimizing the cost function, which measures the difference between the predicted probabilities and the actual class labels.
+
+For this model, Khoi implemented the following functions:
+
+Sigmoid/Logistic function: $\sigma(z) = \frac{1}{1 + e^{-z}}$
+
+% j = -1/m * (y.T.dot(np.log(h + eps)) + (1-y).T.dot(np.log(1-h + eps)))
+Logistic loss function: $log loss = \Sigma_{x, y \in D} -ylog(y') - (1 - y)log(1 - y')$
+
+Where:
+
+$(x, y) \in D$ is the data set containing labeled instances.
+
+$y$ is the label in a labeled example; in this case, it is either 0 or 1.
+
+$y'$ is the predicted value, given the features in x.
+
+Khoi also implemented the logistic regression function from scratch, and can be seen in the code provided.
+
+Here are the results:
+
+\textbf{Decision Tree} is a machine learning algorithm to predict the class of an input based on its features. This algorithm partitions the input space into increasingly smaller regions based on the values of the input features by selecting the features and test conditions that best separate the training data into the different classes. This process is repeated recursively to create a tree-like structure until a final decision is made.
+
+Similar to the previous model, Khoi implemented this from scratch, and can be seen in the provided code.
+
+Here are the results:
