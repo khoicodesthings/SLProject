@@ -86,7 +86,7 @@ def false_positives(y_true, y_pred):
     return fp
 
 # Train logistic regression model
-alpha = 1
+alpha = 0.5
 num_iters = 1000
 theta, j_history = logistic_regression(X_train, y_train, alpha, num_iters)
 

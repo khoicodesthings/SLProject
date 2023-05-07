@@ -129,7 +129,7 @@ X_train, y_train = X[train_idx], y[train_idx]
 X_val, y_val = X[val_idx], y[val_idx]
 
 # Train the decision tree
-tree = DecisionTree(max_depth=3)
+tree = DecisionTree(max_depth=5)
 tree.fit(X_train, y_train)
 
 # Make predictions on the validation set
