@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.28)  29 APR 2023 14:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.28)  7 MAY 2023 19:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -722,28 +722,28 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.7 \textbf{Logistic Regression}
-                                 is a statistical machine learning algorithm... <./kmeanscluster.png>]) (./comparison.tex) (./future.tex)
+                                 is a statistical machine learning algorithm... <./kmeanscluster.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
+) (./comparison.tex) (./future.tex)
 No file main.bbl.
 [2] (./main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 26202 strings out of 476065
- 488293 string characters out of 5795014
+ 26206 strings out of 476065
+ 488334 string characters out of 5795014
  1864299 words of memory out of 5000000
  46029 multiletter control sequences out of 15000+600000
- 530621 words of font info for 127 fonts, out of 8000000 for 9000
+ 530740 words of font info for 129 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,11n,94p,1048b,573s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {d:/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc}<d:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><d:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><d:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><d:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><d:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><d:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><d:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><d:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><d:/texlive/2022/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><d:/texlive/2022/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><d:/texlive/2022/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on main.pdf (2 pages, 207317 bytes).
+Output written on main.pdf (2 pages, 210558 bytes).
 PDF statistics:
- 88 PDF objects out of 1000 (max. 8388607)
- 59 compressed objects within 1 object stream
- 10 named destinations out of 1000 (max. 500000)
+ 89 PDF objects out of 1000 (max. 8388607)
+ 60 compressed objects within 1 object stream
+ 11 named destinations out of 1000 (max. 500000)
  34322 words of extra memory for PDF output out of 35830 (max. 10000000)
 

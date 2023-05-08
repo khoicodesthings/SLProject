@@ -23,10 +23,24 @@ $y'$ is the predicted value, given the features in x.
 
 Khoi also implemented the logistic regression function from scratch, and can be seen in the code provided.
 
-Here are the results:
+Here are the results, with $\alpha = 0.5$ and 1000 iterations.
+
+Accuracy: 97.6\%
+
+Precision: 96.19\%
+
+Recall: 97.22\%
 
 \textbf{Decision Tree} is a machine learning algorithm to predict the class of an input based on its features. This algorithm partitions the input space into increasingly smaller regions based on the values of the input features by selecting the features and test conditions that best separate the training data into the different classes. This process is repeated recursively to create a tree-like structure until a final decision is made.
 
-Similar to the previous model, Khoi implemented this from scratch, and can be seen in the provided code.
+Similar to the previous model, Khoi implemented this from scratch, and can be seen in the provided code. The criteria Khoi is using to split the node is the Gini impurity. The $build_tree()$ method builds the decision tree recursively by finding the best feature and threshold to split the current node based on the Gini impurity criterion. It then splits the data into left and right subsets based on the chosen feature and threshold, and recursively builds the left and right subtrees until it reaches a stopping criterion, such as reaching the maximum depth of the tree or having only one sample in a node.
 
-Here are the results:
+Here are the results, with a tree depth of 5:
+
+Accuracy: 98.07\%
+
+Precision: 97.02\%
+
+Recall: 97.64\%
+
+\subsection{Airi's Results}
