@@ -1,4 +1,4 @@
-\section{Experimental Analysis}
+\section{Experimental Results and Analysis}
 
 \subsection{Khoi's Results}
 
@@ -33,7 +33,7 @@ Recall: 97.22\%
 
 \textbf{Decision Tree} is a machine learning algorithm to predict the class of an input based on its features. This algorithm partitions the input space into increasingly smaller regions based on the values of the input features by selecting the features and test conditions that best separate the training data into the different classes. This process is repeated recursively to create a tree-like structure until a final decision is made.
 
-Similar to the previous model, Khoi implemented this from scratch, and can be seen in the provided code. The criteria Khoi is using to split the node is the Gini impurity. The $build_tree()$ method builds the decision tree recursively by finding the best feature and threshold to split the current node based on the Gini impurity criterion. It then splits the data into left and right subsets based on the chosen feature and threshold, and recursively builds the left and right subtrees until it reaches a stopping criterion, such as reaching the maximum depth of the tree or having only one sample in a node.
+Similar to the previous model, Khoi implemented this from scratch, and can be seen in the provided code. The criteria Khoi is using to split the node is the Gini impurity. This is a measure of the impurity or randomness of a set of examples used in decision trees. It measures the probability that two randomly chosen examples from the set have different class labels. The aim is to find the split that results in the lowest Gini impurity of the resulting subsets.
 
 Here are the results, with a tree depth of 5:
 
@@ -44,3 +44,7 @@ Precision: 97.02\%
 Recall: 97.64\%
 
 \subsection{Airi's Results}
+
+\subsection{Hypothesis 1}
+
+\subsection{Hypothesis 2}
