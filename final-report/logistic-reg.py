@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import roc_curve, auc
+import time
 
 # Load dataset from final.csv file
 df = pd.read_csv('final.csv')
@@ -88,11 +89,14 @@ def false_positives(y_true, y_pred):
 # Train logistic regression model
 alpha = 0.5
 num_iters = 1000
+start = time.time()
 theta, j_history = logistic_regression(X_train, y_train, alpha, num_iters)
 
 # Make predictions
 y_pred = np.round(sigmoid(X_val.dot(theta)))
+end = time.time()
 
+print('Total time:', (end - start)*1000, 'miliseconds')
 # Evaluate model accuracy
 accuracy = np.sum(y_val == y_pred) / len(y_val)
 print('Accuracy:', accuracy)
@@ -121,6 +125,9 @@ fpr, tpr, thresholds = roc_curve(y_val, y_pred)
 # Compute the area under the ROC curve
 roc_auc = auc(fpr, tpr)
 
+print('AUC:', roc_auc)
+# 0.97517
+
 # Plot ROC curve
 plt.plot(fpr, tpr, label='ROC curve (area = %0.2f)' % roc_auc)
 plt.plot([0, 1], [0, 1], 'k--')
@@ -130,5 +137,5 @@ plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate')
 plt.title('Logistic Regression ROC Curve')
 plt.legend(loc="lower right")
-plt.savefig('logistic-regressionROC.png')
+#plt.savefig('logistic-regressionROC.png')
 plt.show()

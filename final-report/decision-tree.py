@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
 from sklearn import metrics
 from sklearn.metrics import roc_curve, auc
+import time
 
 class Node:
     def __init__(self, data, target):
@@ -130,11 +131,14 @@ X_val, y_val = X[val_idx], y[val_idx]
 
 # Train the decision tree
 tree = DecisionTree(max_depth=5)
+start = time.time()
 tree.fit(X_train, y_train)
 
 # Make predictions on the validation set
 y_pred = tree.predict(X_val)
+end = time.time()
 
+print('Total time:', (end-start)*1000, 'miliseconds')
 # Evaluate the performance of the model on the validation set
 accuracy = np.mean(y_pred == y_val)
 print("Accuracy:", accuracy)
@@ -163,6 +167,9 @@ fpr, tpr, thresholds = roc_curve(y_val, y_pred)
 # Compute the area under the ROC curve
 roc_auc = auc(fpr, tpr)
 
+print('AUC:', roc_auc)
+# 0.97974
+
 # Plot ROC curve
 plt.plot(fpr, tpr, label='ROC curve (area = %0.2f)' % roc_auc)
 plt.plot([0, 1], [0, 1], 'k--')
@@ -172,7 +179,7 @@ plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate')
 plt.title('Decision Tree ROC Curve')
 plt.legend(loc="lower right")
-plt.savefig('decision-treeROC.png')
+#plt.savefig('decision-treeROC.png')
 plt.show()
 
 

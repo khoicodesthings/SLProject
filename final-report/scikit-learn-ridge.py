@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import roc_curve, auc
 from sklearn.linear_model import RidgeClassifier #Ridge Regression Classifier
+import time
 
 # Load dataset from final.csv file
 df = pd.read_csv('final.csv')
@@ -47,11 +48,13 @@ X_train, y_train = X[train_idx], y[train_idx]
 X_val, y_val = X[val_idx], y[val_idx]
 
 clf = RidgeClassifier(alpha = 0.5, max_iter=1000)
-
+start = time.time()
 ridge = clf.fit(X_train, y_train)
 
 y_pred = ridge.predict(X_val)
+end = time.time()
 
+print('Total time:', (end-start)*1000, 'miliseconds')
 # Evaluate model accuracy
 accuracy = np.sum(y_val == y_pred) / len(y_val)
 print('Accuracy:', accuracy)
@@ -80,6 +83,9 @@ fpr, tpr, thresholds = roc_curve(y_val, y_pred)
 # Compute the area under the ROC curve
 roc_auc = auc(fpr, tpr)
 
+print('AUC:', roc_auc)
+# 0.96857
+
 # Plot ROC curve
 plt.plot(fpr, tpr, label='ROC curve (area = %0.2f)' % roc_auc)
 plt.plot([0, 1], [0, 1], 'k--')
@@ -89,5 +95,5 @@ plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate')
 plt.title('Ridge Regression ROC Curve')
 plt.legend(loc="lower right")
-plt.savefig('scikitridgeROC.png')
+#plt.savefig('scikitridgeROC.png')
 plt.show()

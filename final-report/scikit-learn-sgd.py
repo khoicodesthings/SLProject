@@ -4,6 +4,9 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import roc_curve, auc
 from sklearn.linear_model import SGDClassifier #Stochastic Gradient Descent
+import time
+
+
 
 # Load dataset from final.csv file
 df = pd.read_csv('final.csv')
@@ -48,10 +51,14 @@ X_val, y_val = X[val_idx], y[val_idx]
 
 clf = SGDClassifier(loss="hinge", penalty="l2", max_iter=1000)
 
+start = time.time()
 sgd = clf.fit(X_train, y_train)
 
 y_pred = sgd.predict(X_val)
 
+end = time.time()
+
+print('Total time:', (end - start)*1000, 'miliseconds')
 #print(y_pred)
 
 # Evaluate model accuracy
@@ -82,6 +89,9 @@ fpr, tpr, thresholds = roc_curve(y_val, y_pred)
 # Compute the area under the ROC curve
 roc_auc = auc(fpr, tpr)
 
+print('AUC:', roc_auc)
+# 0.97424
+
 # Plot ROC curve
 plt.plot(fpr, tpr, label='ROC curve (area = %0.2f)' % roc_auc)
 plt.plot([0, 1], [0, 1], 'k--')
@@ -91,5 +101,5 @@ plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate')
 plt.title('Stochastic Gradient Descent ROC Curve')
 plt.legend(loc="lower right")
-plt.savefig('scikitSGD-ROC.png')
+#plt.savefig('scikitSGD-ROC.png')
 plt.show()
