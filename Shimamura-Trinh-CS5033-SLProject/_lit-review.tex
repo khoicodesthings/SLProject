@@ -1,0 +1,7 @@
+\section{Overview and Preliminary Analysis}
+
+One thing we wanted to explore from the data, is how the points are related to one another, through principal component analysis, and clustering. Using k-means clustering, with $k = 3$, we obtained the following figure.
+
+Principal Component Analysis (PCA) is a technique in statistics and data analysis for reducing the dimensions of a dataset, finding patterns, and visualizing relationships. It works by identifying the principal components that explain the most variation in the data, and projecting the data onto these components. Several sources validate the effectiveness of PCA in various applications, such as genetics, finance, image processing, and ecology. Some notable references include the works of \cite{jolliffe2002principal}, \cite{hotelling1933analysis}, and \cite{pearson1901lines}. We were able to reduce our numeric features into 2 principal components.
+
+Looking at the Figure 1, we can see that Principal Component 1 separate songs with higher liveness, speechiness, and loudness, and those with lower danceability and energy (these mostly belong to Cluster 0 and 2), and Principal Component 2 separate songs with higher instrumentalness, loudness, and those with lower acousticness (these mostly belong to Cluster 2). Overall, we can see that Cluster 0 has songs that are higher in loudness, speechiness, and liveness. Cluster 1 has songs that are lower in danceability and energy. Cluster 2 has songs high in speechiness, liveness, acousticness, but lower in instrumentalness.

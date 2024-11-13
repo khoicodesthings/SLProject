@@ -1,0 +1,39 @@
+\section{Related Work Reviews}
+
+We both compared our models with built-in models from the scikit-learn python package. Khoi compared Logistric Regression with Ridge Reggrsion, Decision Tree with Stochastic Gradient Descent.
+
+\textbf{Ridge regression} is a regularized regression method that addresses the issue of overfitting by adding a penalty term to the loss function. According to \cite{hastie2009elements}, ridge regression can improve prediction accuracy when the number of predictor variables is large and highly correlated. With our dataset, ridge regression has similar, but slightly lower accuracy, however, it achieved higher precision, and lower recall when compared to Logistics Regression.
+
+\textbf{Stochastic gradient descent (SGD)} is an iterative optimization algorithm commonly used for training neural networks and other machine learning models. Compared to batch gradient descent, which updates the model weights based on the entire training dataset, SGD updates the weights based on small batches of data, leading to faster convergence. In the paper by \cite{zhang2017understanding}, the author stated SGD can achieve higher accuracy and faster convergence compared to other optimization methods for deep learning. When compared to the current decision tree model (with depth 5), SGD performed worse, with lower accuracy, precision, and recall.
+
+For Airi, she compared her models with K-Nearest Neighbors, and Support Vector Machine (SVM)
+
+\textbf{K-nearest neighbors} is a non-parametric classification and regression method that uses the k-nearest data points in the training set to make predictions. In the research by \cite{cover1967nearest}, it was found that KNN can achieve high classification accuracy but may suffer from the curse of dimensionality when the number of predictors is high. Addtionally, the study by \cite{jadhav2016comparative} found that K-NN performed better on datasets with smaller numbers of features and larger numbers of instances. Finally, according to \cite{singh2017impact}, K-NN performed better on mixed data, while its performances dropped on numerical and nominal data.
+
+Our dataset has only 11 features and a large number of instances, consisting of both numerical and categorical data, our K-NN model performed better than Naive Bayes but did not reach the level of performance achieved by the Random Forest model.
+
+In Airi's case, she compared K-NN model with different numbers of the nearest neighbors from 1 to 100 and obtain the best number of k value.
+
+\textbf{Support vector machines (SVM)} are popular supervised learning methods that seeks to find the hyperplane that maximally separates the different classes in the input space. \cite{cortes1995support} stated that SVM can achieve higher classification accuracy than other methods such as neural networks and decision trees, especially in high-dimensional spaces.
+
+With our data, SVM performed worse than Random Forest, with a lower accuracy, precision, and recall.
+
+Table 2 shows the results of these scikit-learn models:
+
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[H]
+\centering
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lllll}
+          & Ridge Reg & SGD & KNN & SVM \\
+Accuracy  & 97.29\%  & 97.6\%     & 98.14\%       & 97.83\%           \\
+Precision & 97.16\% & 96.58\%     & 98.12\%       & 97.78\%           \\
+Recall    & 95.29\% & 96.79\%     & 97.85\%       & 97.51\%  \\
+\end{tabular}%
+}
+\caption{\label{demo-table}Comparison Models' Results}
+%\vspace{-12mm}
+\end{table}
+\raggedbottom
+

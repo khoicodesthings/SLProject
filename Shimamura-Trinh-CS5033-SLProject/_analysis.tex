@@ -1,0 +1,74 @@
+\section{Experimental Results and Analysis}
+
+\subsection{Khoi's Experiments}
+
+For this project, Khoi implemented logistic regression and decision tree.
+
+\textbf{Logistic Regression} is a statistical machine learning algorithm predicting the probability of a target variable by fitting a logistic function to the input features. This optimizes the parameters of the logistic function by minimizing the cost function, which measures the difference between the predicted probabilities and the actual class labels.
+
+For this model, Khoi implemented the following functions:
+
+Sigmoid/Logistic function: $\sigma(z) = \frac{1}{1 + e^{-z}}$
+
+% j = -1/m * (y.T.dot(np.log(h + eps)) + (1-y).T.dot(np.log(1-h + eps)))
+Logistic loss function: $log loss = \Sigma_{x, y \in D} -ylog(y') - (1 - y)log(1 - y')$
+
+Where:
+
+$(x, y) \in D$ is the data set containing labeled instances.
+
+$y$ is the label in a labeled example; in this case, it is either 0 or 1.
+
+$y'$ is the predicted value, given the features in x.
+
+Khoi also implemented the logistic regression function from scratch, and can be seen in the code provided.
+
+\textbf{Decision Tree} is a machine learning algorithm used to predict the class of an input based on its features. This algorithm partitions the input space into increasingly smaller regions based on the values of the input features by selecting the features and test conditions that best separate the training data into the different classes. This process is repeated recursively to create a tree-like structure until a final decision is made.
+
+Similar to the previous model, Khoi implemented this from scratch, and can be seen in the provided code. The criteria Khoi is using to split the node is the Gini impurity. This is a measure of the impurity or randomness of a set of examples used in decision trees. It measures the probability that two randomly chosen examples from the set have different class labels. The aim is to find the split that results in the lowest Gini impurity of the resulting subsets. With that being said, in \cite{breiman1984classification}, the author mentioned that decision tree can achieve high accuracy, but can be unstable due to small changes in the training data.
+
+The results for these algorithms will be included in table 1.
+
+\subsection{Airi's Experiments}
+
+Airi implemented Naive Bayes and Random Forest algorithms.
+
+\textbf{Naive Bayes} is a group of probabilistic machine learning algorithms based on applying Bayes’ theorem with the assumption of independence between features. This assumes that the presence or absence of one feature does not affect the presence or absence of any other feature within a class, and calculates the probabilities of each class label given the values of the features from the input. The class with the highest probability is then selected as the predicted class label for the given input. In a study conducted by \cite{singh2017impact}, it is stated that Naive Bayes performed better on nominal data, while its performance on numerical and mixed data was dropped. Te majority of our data is numerical, meaning the performance of our model was not as good as other models such as K-NN or Random Forest as shown in table 1. 
+
+\textbf{Random Forest} is an ensemble learning method that combines multiple decision trees to improve performance and reduce over-fitting. Airi was able to build her model based on Khoi's Decision Tree code. In a study conducted by \cite{tangirala2020evaluating}, it was found that both Gini impurity or Information gain provided similar performances regardless of whether the data set was balanced or unbalanced. However, the Gini index outperformed information gain in terms of accuracy on certain datasets, while information gain exhibited better computational time efficiency. 
+
+In addition, according to \cite{singh2017impact}, Random Forest performed better on numerical data, while its performance dropped for nominal and mixed data. Even though our dataset is mixed data, our Random Forest model still achieved an accuracy of over 98\% .
+
+For this model, Airi used the Gini index as the criterion for tree splitting, varying the number of decision trees from 10 to 100 with depth = 10 and selecting the best performance. The maximum accuracy was achieved when the number of trees was set to 30.
+
+The results for these algorithms will be included in table 1.
+
+\subsection{Hypothesis 1}
+
+Table 1 shows our results.
+
+\begin{table}[H]
+\centering
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lllll}
+          & Log Reg & Naive Bayes & Decision Tree & Random Forest \\
+Accuracy  & 97.6\%  & 97.45\%     & 98.07\%       & 98.61\%           \\
+Precision & 96.19\% & 97.58\%     & 97.02\%       & 98.63\%           \\
+Recall    & 97.22\% & 96.88\%     & 97.64         & 98.35\%     \\
+Runtime(ms)    & 677.4   &65.41        & 12789.01      & 270066.1 
+\end{tabular}%
+}
+\caption{\label{demo-table}Results Of Our Experiments}
+%\vspace{-4mm}
+\end{table}
+\raggedbottom
+
+From the above results, we can see that our experiments matched the expectations of hypothesis 1; all four of our models performed with accuracy better than 90\%.
+
+\subsection{Hypothesis 2}
+
+For this hypothesis, we first compared the accuracy of each algorithm, then the area under the curve (AUC), and finally, the running time. The algorithm with the higher accuracy is generally considered to be better. If the accuracy is the same, then a higher AUC indicates a better algorithm. Finally, if both accuracy and AUC are the same, then the faster algorithm is the better one. 
+
+Looking at table 1, we can see that we only needed to compare accuracy. This means that Random Forest performed best, followed by Decision Tree, then Logistic Regression, and finally Naive Bayes.
+
+Overall, the four algorithms were ranked as expected.
